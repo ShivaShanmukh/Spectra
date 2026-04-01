@@ -1,0 +1,25 @@
+
+Sprint,Task,Tool / Tech,Output,Owner,Status
+Sprint 1 – Hardware Setup,Procure cameras and sensors,"High-speed cameras, MEMS accelerometers, thermal sensor, directional microphones",Inventory of components and benchmarking results,Procurement Manager,Pending
+Sprint 1 – Hardware Setup,Assemble Pitch Pod prototype,"3D printing, soldering, microcontrollers, battery pack","Working Pitch Pod capturing video, audio & thermal data",Hardware Engineer,Pending
+Sprint 1 – Hardware Setup,Develop Smart Stump electronics,"Arduino or custom PCB, accelerometer, Bluetooth module",Smart Stump detecting vibrations & bail dislodgement,Embedded Engineer,Pending
+Sprint 2 – Sensor Calibration & Data Pipeline,Calibrate cameras and synchronize sensors,"OpenCV calibration toolkit, timestamp synchronization",Calibrated multi-camera rig with known extrinsics and synchronized sensor data streams,Computer Vision Engineer,Pending
+Sprint 2 – Sensor Calibration & Data Pipeline,Implement data ingestion pipeline,"Python, GStreamer, ROS or custom pipeline","Streaming of video, audio, thermal and stump sensor data into AI core",Systems Engineer,Pending
+Sprint 3 – AI Modules,Train ball detection & trajectory model,"YOLOv8, TensorFlow/PyTorch, labelled cricket footage",Model detecting ball positions with high accuracy,AI Researcher,Pending
+Sprint 3 – AI Modules,Develop audio impact detection,"Signal processing (FFT), machine learning classifier","Algorithm distinguishing bat-ball, pad-ball and wicket sounds",Signal Processing Engineer,Pending
+Sprint 3 – AI Modules,Integrate pose estimation,"MediaPipe Pose, custom feature extraction scripts",Pose keypoints and derived biomechanical metrics,Data Scientist,Pending
+Sprint 4 – AI Umpire Decision Engine,Implement no-ball & wide detection,Rule-based logic on trajectory & foot placement data,Real-time decisions for front-foot no-balls and wides,AI Engineer,Pending
+Sprint 4 – AI Umpire Decision Engine,Develop run-out & stumping detection,Smart Stump sensor fusion and high-speed video analysis,Decision algorithm for run-outs and stumpings with timestamped frames,AI Engineer,Pending
+Sprint 4 – AI Umpire Decision Engine,Implement LBW & edge detection,"Trajectory projection, sound & thermal fusion for bat/pad impact",Probability-based LBW and edge detections,Machine Learning Engineer,Pending
+Sprint 5 – AI Coach Analytics,Build biomechanics analytics,"Pose data processing, kinematic feature extraction","Metrics such as release angle, bowling speed, bat speed, swing plane",Sports Scientist,Pending
+Sprint 5 – AI Coach Analytics,Generate pitch map & wagon wheel visualizations,"Matplotlib/Plotly, data aggregation algorithms",Graphical representations of ball landing zones and shot directions,Data Visualization Specialist,Pending
+Sprint 5 – AI Coach Analytics,Integrate bat sensor data (optional),"Bluetooth connectivity, sensor fusion",Enhanced metrics using bat speed & angle from wearable strap,Embedded Engineer,Pending
+Sprint 6 – Dashboard & Front-End,Develop real-time decision display,"React/Flutter, WebSockets","Front-end module showing live officiating calls (no-ball, out, wide) at the field",Front-end Developer,Pending
+Sprint 6 – Dashboard & Front-End,Build user profile & analytics pages,"React/Flutter, Charting library (e.g., Recharts)","Player and coach views showing session highlights, progress, comparisons",Full-stack Developer,Pending
+Sprint 6 – Dashboard & Front-End,Implement session clipping & sharing,"Video processing pipeline, cloud storage (Firebase/Google Cloud)",Automatic segmentation of each ball into individual clips with shareable links,Backend Engineer,Pending
+Sprint 7 – Pilot Deployment,Install hardware at pilot academy,"Tripods, mounting hardware, network setup",Physical installation and calibration at test venue,Field Engineer,Pending
+Sprint 7 – Pilot Deployment,Train pilot users,"User guides, hands-on training sessions",Coaches and players able to operate system and provide feedback,Customer Success Manager,Pending
+Sprint 7 – Pilot Deployment,Collect feedback & iterate,"Surveys, analytics dashboards","List of bugs, performance metrics and feature requests",Product Manager,Pending
+Sprint 8 – Manufacturing & Go-to-Market Prep,Finalize BOM and supplier contracts,"Supplier negotiations, contract drafting",Signed agreements for hardware production,Operations Manager,Pending
+Sprint 8 – Manufacturing & Go-to-Market Prep,Produce marketing collateral,"Adobe Suite, video production","Pitch deck, demo video, website",Marketing Team,Pending
+Sprint 8 – Manufacturing & Go-to-Market Prep,Set up sales pipeline,"CRM system (HubSpot/Zoho), lead list",Initial outreach to mid-sized London academies,Sales Lead,Pending

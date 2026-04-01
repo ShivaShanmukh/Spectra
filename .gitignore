@@ -1,0 +1,59 @@
+# Video files
+*.mp4
+*.mov
+*.avi
+
+# ML models
+*.pt
+*.pth
+*.onnx
+*.h5
+
+# Debug/test images and outputs
+ball_confirm/
+debug_frame*.jpg
+debug_mask_frame*.jpg
+frame_*.jpg
+frame_raw.jpg
+frame_test.jpg
+mask_red.jpg
+mask_white.jpg
+output.jpg
+test_image.jpg
+video_strip.jpg
+tracked_test*.mp4
+tracked_output.mp4
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.env
+
+# Node / Next.js
+node_modules/
+/.next/
+/out/
+/build
+.pnp
+.pnp.js
+.yarn/install-state.gz
+.DS_Store
+*.local
+
+# Coverage / testing
+/coverage
+
+# Misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
