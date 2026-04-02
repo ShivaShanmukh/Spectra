@@ -5,24 +5,25 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const router = useRouter()
-  const { signIn } = useAuth()
+  const { signUp } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
+  const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  const handleSignIn = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setSubmitting(true)
     try {
-      await signIn(email, password)
+      await signUp(email, password, fullName)
       router.push('/dashboard')
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Sign in failed')
+      setError(err instanceof Error ? err.message : 'Sign up failed')
     } finally {
       setSubmitting(false)
     }
@@ -35,10 +36,19 @@ export default function LoginPage() {
           <ArrowLeft className="w-6 h-6" strokeWidth={2} />
         </button>
 
-        <h1 className="text-white text-4xl font-black mb-2">Welcome Back</h1>
-        <p className="text-[#888] text-sm mb-8">Sign in to continue analyzing your bowling</p>
+        <h1 className="text-white text-4xl font-black mb-2">Create Account</h1>
+        <p className="text-[#888] text-sm mb-8">Join CricketTrack and start analyzing your bowling</p>
 
-        <form onSubmit={handleSignIn} className="flex-1 flex flex-col">
+        <form onSubmit={handleSignUp} className="flex-1 flex flex-col">
+          <div className="mb-4">
+            <label className="text-white text-sm font-bold mb-2 block">Full Name</label>
+            <input
+              type="text" value={fullName} onChange={e => setFullName(e.target.value)}
+              placeholder="John Doe" required
+              className="w-full bg-[#1e1e1e] text-white placeholder:text-[#888] px-4 py-4 rounded-xl text-base font-medium focus:outline-none focus:ring-2 focus:ring-[#E8413E]"
+            />
+          </div>
+
           <div className="mb-4">
             <label className="text-white text-sm font-bold mb-2 block">Email</label>
             <input
@@ -67,14 +77,14 @@ export default function LoginPage() {
 
           <button type="submit" disabled={submitting}
             className="w-full bg-[#E8413E] text-white py-4 rounded-full font-bold text-base hover:bg-[#f04945] transition-all mb-4 disabled:opacity-50 disabled:cursor-not-allowed">
-            {submitting ? 'Signing in…' : 'Sign In'}
+            {submitting ? 'Creating account…' : 'Create Account'}
           </button>
 
           <p className="text-center text-[#888] text-sm">
-            Don&apos;t have an account?{' '}
-            <button type="button" onClick={() => router.push('/signup')}
+            Already have an account?{' '}
+            <button type="button" onClick={() => router.push('/login')}
               className="text-[#E8413E] font-bold hover:underline">
-              Create Account
+              Sign In
             </button>
           </p>
         </form>
