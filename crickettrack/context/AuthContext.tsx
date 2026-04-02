@@ -57,6 +57,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       email, password, options: { data: { full_name: fullName } }
     })
     if (error) throw error
+    // If session is null, Supabase requires email confirmation before login
+    if (!data.session) throw new Error('CONFIRM_EMAIL')
     const u = data.user
     if (u) setUser({ id: u.id, email: u.email!, full_name: fullName })
   }

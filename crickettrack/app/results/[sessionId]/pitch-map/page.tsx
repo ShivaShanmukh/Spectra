@@ -95,7 +95,7 @@ export default function PitchMapPage({ params }: { params: { sessionId: string }
 
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] h-[844px] bg-[#141414] flex flex-col overflow-hidden">
+      <div className="phone-frame bg-[#141414] flex flex-col overflow-hidden">
         <div className="px-6 pt-16 pb-6 flex items-center justify-between flex-shrink-0">
           <button onClick={() => router.back()}
             className="w-10 h-10 rounded-full bg-[#1e1e1e] flex items-center justify-center hover:bg-[#2a2a2a] transition-colors">

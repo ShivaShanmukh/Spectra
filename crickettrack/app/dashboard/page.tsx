@@ -57,7 +57,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] h-[844px] bg-[#141414] flex flex-col overflow-hidden">
+      <div className="phone-frame bg-[#141414] flex flex-col overflow-hidden">
         {/* Top Bar */}
         <div className="px-6 pt-16 pb-6 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">

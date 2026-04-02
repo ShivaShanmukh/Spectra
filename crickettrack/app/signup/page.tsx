@@ -1,6 +1,6 @@
 'use client'
 
-import { Eye, EyeOff, ArrowLeft } from 'lucide-react'
+import { Eye, EyeOff, ArrowLeft, Mail } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
@@ -14,6 +14,7 @@ export default function SignUpPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [awaitingConfirm, setAwaitingConfirm] = useState(false)
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,15 +24,40 @@ export default function SignUpPage() {
       await signUp(email, password, fullName)
       router.push('/dashboard')
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Sign up failed')
+      if (err instanceof Error && err.message === 'CONFIRM_EMAIL') {
+        setAwaitingConfirm(true)
+      } else {
+        setError(err instanceof Error ? err.message : 'Sign up failed')
+      }
     } finally {
       setSubmitting(false)
     }
   }
 
+  if (awaitingConfirm) {
+    return (
+      <div className="min-h-screen bg-[#141414] flex items-center justify-center">
+        <div className="phone-frame bg-[#141414] flex flex-col items-center justify-center px-6 text-center">
+          <div className="w-20 h-20 rounded-full bg-[#1e1e1e] flex items-center justify-center mb-6">
+            <Mail className="w-9 h-9 text-[#E8413E]" strokeWidth={1.5} />
+          </div>
+          <h1 className="text-white text-3xl font-black mb-3">Check your inbox</h1>
+          <p className="text-[#888] text-sm leading-relaxed mb-8">
+            We sent a confirmation link to <span className="text-white font-bold">{email}</span>.
+            Click it to activate your account, then come back to sign in.
+          </p>
+          <button onClick={() => router.push('/login')}
+            className="w-full bg-[#E8413E] text-white py-4 rounded-full font-bold text-base hover:bg-[#f04945] transition-all">
+            Go to Sign In
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] min-h-[844px] bg-[#141414] flex flex-col px-6 pt-16 pb-8">
+      <div className="phone-frame bg-[#141414] flex flex-col px-6 pt-16 pb-8">
         <button onClick={() => router.push('/')} className="self-start mb-8 text-white hover:text-[#E8413E] transition-colors">
           <ArrowLeft className="w-6 h-6" strokeWidth={2} />
         </button>

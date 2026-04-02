@@ -93,7 +93,7 @@ export default function HistoryPage() {
 
   if (!loading && sessions.length === 0) return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] h-[844px] bg-[#141414] flex flex-col relative">
+      <div className="phone-frame bg-[#141414] flex flex-col relative">
         <div className="px-6 pt-16 pb-6">
           <h1 className="text-[52px] font-black text-white leading-none mb-2">History</h1>
           <p className="text-[#888] text-sm font-medium">0 sessions · 0 deliveries total</p>
@@ -134,7 +134,7 @@ export default function HistoryPage() {
 
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] h-[844px] bg-[#141414] flex flex-col overflow-hidden">
+      <div className="phone-frame bg-[#141414] flex flex-col overflow-hidden">
         <div className="px-6 pt-16 pb-6 flex-shrink-0">
           <h1 className="text-[52px] font-black text-white leading-none mb-2">History</h1>
           <p className="text-[#888] text-sm font-medium">{sessions.length} sessions · {totalDeliveries} deliveries total</p>

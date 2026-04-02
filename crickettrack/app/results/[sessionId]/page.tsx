@@ -69,7 +69,7 @@ export default function ResultsPage({ params }: { params: { sessionId: string } 
 
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] h-[844px] bg-[#141414] flex flex-col overflow-hidden">
+      <div className="phone-frame bg-[#141414] flex flex-col overflow-hidden">
         <div className="px-6 pt-16 pb-4 flex items-center justify-between flex-shrink-0">
           <button onClick={() => router.push('/dashboard')} className="text-white hover:text-[#E8413E] transition-colors">
             <ArrowLeft className="w-6 h-6" strokeWidth={2} />

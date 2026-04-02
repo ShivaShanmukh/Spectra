@@ -97,7 +97,7 @@ function ProcessingContent() {
 
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] h-[844px] bg-[#141414] flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="phone-frame bg-[#141414] flex flex-col items-center justify-center relative overflow-hidden">
         <svg className="absolute inset-0 w-full h-full opacity-[0.05]" viewBox="0 0 390 844" fill="none">
           <rect x="95" y="200" width="200" height="444" stroke="white" strokeWidth="2" />
           <line x1="95" y1="300" x2="295" y2="300" stroke="white" strokeWidth="2" />

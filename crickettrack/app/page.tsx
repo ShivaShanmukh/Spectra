@@ -9,7 +9,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] min-h-[844px] bg-[#141414] flex flex-col items-center justify-between px-6 pt-20 pb-8">
+      <div className="phone-frame bg-[#141414] flex flex-col items-center justify-between px-6 pt-20 pb-8">
         <div className="text-center">
           <h1 className="text-white text-4xl font-black mb-2">CricketTrack</h1>
           <p className="text-[#888] text-sm font-medium">AI-Powered Bowling Analytics</p>

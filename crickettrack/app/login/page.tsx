@@ -22,7 +22,10 @@ export default function LoginPage() {
       await signIn(email, password)
       router.push('/dashboard')
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Sign in failed')
+      const msg = err instanceof Error ? err.message : 'Sign in failed'
+      setError(msg.toLowerCase().includes('not confirmed')
+        ? 'Please confirm your email first — check your inbox for the link we sent.'
+        : msg)
     } finally {
       setSubmitting(false)
     }
@@ -30,7 +33,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#141414] flex items-center justify-center">
-      <div className="w-[390px] min-h-[844px] bg-[#141414] flex flex-col px-6 pt-16 pb-8">
+      <div className="phone-frame bg-[#141414] flex flex-col px-6 pt-16 pb-8">
         <button onClick={() => router.push('/')} className="self-start mb-8 text-white hover:text-[#E8413E] transition-colors">
           <ArrowLeft className="w-6 h-6" strokeWidth={2} />
         </button>
