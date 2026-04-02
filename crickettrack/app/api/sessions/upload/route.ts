@@ -4,8 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const MAX_FILE_SIZE_BYTES = 500 * 1024 * 1024 // 500 MB
-const MIN_DURATION_SECONDS = 300              // 5 minutes
-const ALLOWED_MIME_TYPES = ['video/mp4', 'video/quicktime']
+const ALLOWED_EXTENSIONS = ['mp4', 'mov', 'avi', 'webm', 'mkv']
 const SIGNED_URL_EXPIRY = 3600               // 1 hour
 
 // ─── Error types ──────────────────────────────────────────────────────────────
@@ -61,7 +60,8 @@ export async function POST(request: NextRequest) {
 
     // duration_seconds must be sent by the client after checking via
     // the HTML5 video element before calling this API
-    const durationSeconds = Number(formData.get('duration_seconds') ?? 0)
+    // duration_seconds accepted but not enforced during testing
+    void formData.get('duration_seconds')
 
     // 3. Validate required fields
     if (!file) {
@@ -71,13 +71,12 @@ export async function POST(request: NextRequest) {
       return err('MISSING_BOWLER_NAME', 'Bowler name is required.', 400)
     }
 
-    // 4. Validate file type (MIME + extension double-check)
-    const ext = file.name.split('.').pop()?.toLowerCase()
-    const validExt = ext === 'mp4' || ext === 'mov'
-    if (!ALLOWED_MIME_TYPES.includes(file.type) || !validExt) {
+    // 4. Validate file extension
+    const ext = file.name.split('.').pop()?.toLowerCase() ?? ''
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
       return err(
         'INVALID_FILE_TYPE',
-        'Only MP4 and MOV files are accepted.',
+        'Only MP4, MOV, AVI, WebM, and MKV files are accepted.',
         400
       )
     }
@@ -88,16 +87,6 @@ export async function POST(request: NextRequest) {
       return err(
         'FILE_TOO_LARGE',
         `File is ${sizeMB} MB. Maximum allowed size is 500 MB.`,
-        400
-      )
-    }
-
-    // 6. Validate duration (supplied by client-side HTML5 video check)
-    if (durationSeconds < MIN_DURATION_SECONDS) {
-      const mins = (durationSeconds / 60).toFixed(1)
-      return err(
-        'VIDEO_TOO_SHORT',
-        `Video is ${mins} min. Minimum required duration is 5 minutes.`,
         400
       )
     }

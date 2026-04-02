@@ -91,20 +91,13 @@ export function useUpload(): UseUploadReturn {
       setStatus('validating')
 
       const ext = file.name.split('.').pop()?.toLowerCase()
-      if (file.type !== 'video/mp4' && file.type !== 'video/quicktime') {
-        const uploadError: UploadError = {
-          code: 'INVALID_FILE_TYPE',
-          message: 'Only MP4 and MOV files are accepted.',
-        }
-        setError(uploadError)
-        setStatus('error')
-        return null
-      }
+      const mimeOk = file.type.startsWith('video/') || file.type === ''
+      const extOk  = ext === 'mp4' || ext === 'mov' || ext === 'avi' || ext === 'webm' || ext === 'mkv'
 
-      if (!ext || (ext !== 'mp4' && ext !== 'mov')) {
+      if (!mimeOk || !extOk) {
         const uploadError: UploadError = {
           code: 'INVALID_FILE_TYPE',
-          message: 'File extension must be .mp4 or .mov.',
+          message: 'Please upload a video file (MP4, MOV, AVI, WebM).',
         }
         setError(uploadError)
         setStatus('error')
@@ -123,29 +116,12 @@ export function useUpload(): UseUploadReturn {
         return null
       }
 
-      // Check duration via HTML5 video element
-      let durationSeconds: number
+      // Read duration — no minimum enforced during testing
+      let durationSeconds = 0
       try {
         durationSeconds = await getVideoDuration(file)
       } catch {
-        const uploadError: UploadError = {
-          code: 'DURATION_READ_ERROR',
-          message: 'Could not read video duration. Make sure the file is a valid video.',
-        }
-        setError(uploadError)
-        setStatus('error')
-        return null
-      }
-
-      if (durationSeconds < MIN_DURATION_SECONDS) {
-        const mins = (durationSeconds / 60).toFixed(1)
-        const uploadError: UploadError = {
-          code: 'VIDEO_TOO_SHORT',
-          message: `Video is ${mins} min. Minimum required is 5 minutes.`,
-        }
-        setError(uploadError)
-        setStatus('error')
-        return null
+        durationSeconds = 0
       }
 
       // ── 2. Build form data ─────────────────────────────────────────────────

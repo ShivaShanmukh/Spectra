@@ -55,7 +55,7 @@ export default function UploadPage() {
               {isUploading ? `Uploading… ${progress}%` : videoFile ? 'Video Selected' : 'Upload Bowling Video'}
             </h3>
             <p className="text-[#888] text-sm text-center mb-4">
-              {videoFile ? videoFile.name : 'MP4 or MOV · Max 500MB · 5–20 mins'}
+              {videoFile ? videoFile.name : 'MP4, MOV, AVI, WebM · Max 500MB'}
             </p>
             {isUploading && (
               <div className="w-full bg-[#333] rounded-full h-2 mb-4">
@@ -68,7 +68,7 @@ export default function UploadPage() {
                 + {videoFile ? 'Change File' : 'Choose File'}
               </button>
             )}
-            <input type="file" id="video-upload" accept="video/mp4,video/mov"
+            <input type="file" id="video-upload" accept="video/*,.mp4,.mov,.avi,.webm,.mkv"
               onChange={e => setVideoFile(e.target.files?.[0] || null)} className="hidden" />
           </div>
 
